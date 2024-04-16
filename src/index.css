@@ -11,3 +11,63 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#navbar{
+  position: sticky;
+  top: 0px;
+}
+
+#LoginForm{
+  width: auto;
+  height: auto;
+  padding: 50px;
+  display: flex;
+  flex-direction: row;
+}
+#loginformblock1{
+  width: 50%;
+  height: 500px;
+  background-image: url('/public/images/loginimg3.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 50px;
+}
+#loginformblock1 span{
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+}
+#loginformblock2{
+  width: 50%;
+  height: 500px;
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+}
+.form-floating{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+#loginCheckbox{
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  margin-right: auto;
+}
+#loginCheckbox input{
+  margin-right: 10px;
+}
+#a1{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+#loginContent{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: justify;
+}
