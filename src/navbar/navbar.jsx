@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 function NavBar() {
     const navigate = useNavigate();
-    function logout(){
+    function logout() {
         window.localStorage.removeItem("token")
         navigate('/');
     }
     return (
-        <div>
+        <div id="NavBar">
             {
                 !window.localStorage.getItem("token") ?
                     <nav id="navbar">
@@ -22,15 +22,21 @@ function NavBar() {
                             <li class="nav-item">
                                 <a class="nav-link" href="/register">Register</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/exam">Exam</a>
+                            </li>
                         </ul>
                     </nav> :
-                    <nav>
+                    <nav id="navbar">
                         <ul class="nav nav-underline">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Home</a>
+                                <a class="nav-link" href="/">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" onClick={()=>logout()}>LogOut</a>
+                                <a class="nav-link" href="/exam">Exam</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/" onClick={() => logout()}>LogOut</a>
                             </li>
                         </ul>
                     </nav>

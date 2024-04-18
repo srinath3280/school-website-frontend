@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
+import '../node_modules/bootstrap-icons/font/bootstrap-icons.css';
 
 import {
   createBrowserRouter,
@@ -12,6 +13,8 @@ import {
 } from "react-router-dom";
 import Login from './authenticate/login';
 import Register from './authenticate/register.jsx';
+import ExamPattern from './dashboard/exam.jsx';
+import Instructions from './dashboard/instruction.jsx';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +32,14 @@ const router = createBrowserRouter([
       {
         path:'/register',
         element:<Register></Register>
+      },
+      {
+        path:'/exam',
+        element:<ExamPattern></ExamPattern>
+      },
+      {
+        path:'/instructions',
+        element:<Instructions></Instructions>
       }
     ]
   },

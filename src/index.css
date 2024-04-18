@@ -12,9 +12,19 @@ code {
     monospace;
 }
 
-#navbar{
+#NavBar{
   position: sticky;
-  top: 0px;
+  top: 0;
+}
+#navbar{
+  width: 100%;
+  height: 75px;
+  background-color: aliceblue;
+  line-height: 50px;
+}
+#navbar ul li a{
+  font-size: 20px;
+  margin-left: 30px;
 }
 
 #LoginForm{
@@ -70,4 +80,120 @@ code {
   margin-left: auto;
   margin-right: auto;
   text-align: justify;
+}
+
+#registerform{
+  background-color: gainsboro;
+  padding: 50px;
+}
+#register{
+  width: 100%;
+  height: auto;
+  background-color: white;
+  padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#registerblock1{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+#registerblock2 h4{
+  text-align: start;
+}
+#registerblock3 h4{
+  text-align: start;
+}
+#registerblock4 h4{
+  text-align: start;
+}
+#registerblock5 h4{
+  text-align: start;
+}
+
+#examdemo{
+  display: flex;
+  flex-direction: column;
+}
+#exammainblock{
+  display: flex;
+  flex-direction: row;
+}
+#examfooterblock{
+  position: sticky;
+  bottom: 0px;
+  padding: 15px;
+}
+#examfooterblock button{
+  width: 100px;
+  height: 50px;
+  font-weight: bold;
+  font-size: 20px;
+}
+#examblock1{
+  width: 70%;
+  height: 465px;
+  background-color: whitesmoke;
+  text-align: start;
+  padding: 20px;
+  overflow: scroll;
+}
+#examblock2{
+  width: 30%;
+  height: auto;
+  background-color: wheat;
+}
+#examblock2 span{
+  width: auto;
+  height: auto;
+  padding: 0px 30px;
+  background-color: rgb(2, 2, 252);
+  color: white;
+  font-weight: bold;
+}
+
+#instruction{
+  display: flex;
+  flex-direction: column;
+}
+#instructionmainblock{
+  display: flex;
+  flex-direction: row;
+}
+#instructionfooterblock{
+  position: sticky;
+  bottom: 0px;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+#instructionfooterblock button{
+  width: auto;
+  height: 50px;
+  font-weight: bold;
+  font-size: 20px;
+}
+#instructionblock1{
+  width: 70%;
+  height: 465px;
+  background-color: whitesmoke;
+  text-align: start;
+  padding: 20px;
+  overflow: scroll;
+}
+#instructionblock2{
+  width: 30%;
+  height: auto;
+  background-color: wheat;
+}
+#instructionblock2 span{
+  width: auto;
+  height: auto;
+  padding: 0px 30px;
+  background-color: rgb(2, 2, 252);
+  color: white;
+  font-weight: bold;
 }
