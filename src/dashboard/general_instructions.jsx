@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function ExamPattern() {
+function GeneralInstructions() {
     const navigate = useNavigate();
     function instructionspage() {
-        navigate('/instructions')
+        navigate('/additionalinstructions')
     }
     return (
         <div id="examdemo">
@@ -75,4 +75,4 @@ function ExamPattern() {
         </div>
     )
 }
-export default ExamPattern
+export default GeneralInstructions

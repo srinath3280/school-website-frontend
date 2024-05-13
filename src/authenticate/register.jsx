@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../scriptFiles/countries-states.js';
@@ -7,9 +7,13 @@ const Register = () => {
   const [Gender, setGender] = useState();
   const [selectedState, setSelectedState] = useState('');
   const [districts, setDistricts] = useState([]);
-  const [State,setState] = useState();
-  const [District,setDistrict] = useState();
+  const [State, setState] = useState();
+  const [District, setDistrict] = useState();
   const navigate = useNavigate();
+
+  const [recording, setRecording] = useState(false);
+  const [audioData, setAudioData] = useState(null);
+  const mediaRecorderRef = useRef(null);
 
   var AndraPradesh = ["Anantapur", "Chittoor", "East Godavari", "Guntur", "Kadapa", "Krishna", "Kurnool", "Prakasam", "Nellore", "Srikakulam", "Visakhapatnam", "Vizianagaram", "West Godavari"];
   var ArunachalPradesh = ["Anjaw", "Changlang", "Dibang Valley", "East Kameng", "East Siang", "Kra Daadi", "Kurung Kumey", "Lohit", "Longding", "Lower Dibang Valley", "Lower Subansiri", "Namsai", "Papum Pare", "Siang", "Tawang", "Tirap", "Upper Siang", "Upper Subansiri", "West Kameng", "West Siang", "Itanagar"];
@@ -74,6 +78,9 @@ const Register = () => {
   })
   const { firstname, lastname, dob, gender, fathername, fatherprofession, fathercontact, mothername, motherprofession, mothercontact, mobilenumber, emailaddress, city, district, state, country, postalcode, fulladdress, password, confirmpassword } = data;
   const changeHandler = e => {
+    const { name, value } = e.target;
+    setData({ ...data, [name]: value });
+
     document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('myForm').addEventListener('submit', function (event) {
         event.preventDefault(); // Prevent form submission
@@ -86,154 +93,188 @@ const Register = () => {
           console.log("Please select a gender.");
         }
 
-        var selectedState = document.getElementById('selectOption').value;
-        setState(selectedState);
+        var SelectedState = document.getElementById('selectOption').value;
+        setState(SelectedState);
 
         var selectedDistrict = document.getElementById('selectOption1').value;
         setDistrict(selectedDistrict);
-        
+
       });
     });
 
-    const stateSelected = e.target.value;
-    setSelectedState(stateSelected);
+    // const stateSelected = e.target.value;
+    // setSelectedState(stateSelected);
 
-    switch (stateSelected) {
-      case "Andra Pradesh":
-        setDistricts(AndraPradesh);
-        break;
-      case "Arunachal Pradesh":
-        setDistricts(ArunachalPradesh);
-        break;
-      case "Assam":
-        setDistricts(Assam);
-        break;
-      case "Bihar":
-        setDistricts(Bihar);
-        break;
-      case "Chhattisgarh":
-        setDistricts(Chhattisgarh);
-        break;
-      case "Goa":
-        setDistricts(Goa);
-        break;
-      case "Gujarat":
-        setDistricts(Gujarat);
-        break;
-      case "Haryana":
-        setDistricts(Haryana);
-        break;
-      case "Himachal Pradesh":
-        setDistricts(HimachalPradesh);
-        break;
-      case "Jammu and Kashmir":
-        setDistricts(JammuKashmir);
-        break;
-      case "Jharkhand":
-        setDistricts(Jharkhand);
-        break;
-      case "Karnataka":
-        setDistricts(Karnataka);
-        break;
-      case "Kerala":
-        setDistricts(Kerala);
-        break;
-      case "Madya Pradesh":
-        setDistricts(MadhyaPradesh);
-        break;
-      case "Maharashtra":
-        setDistricts(Maharashtra);
-        break;
-      case "Manipur":
-        setDistricts(Manipur);
-        break;
-      case "Meghalaya":
-        setDistricts(Meghalaya);
-        break;
-      case "Mizoram":
-        setDistricts(Mizoram);
-        break;
-      case "Nagaland":
-        setDistricts(Nagaland);
-        break;
-      case "Orissa":
-        setDistricts(Odisha);
-        break;
-      case "Punjab":
-        setDistricts(Punjab);
-        break;
-      case "Rajasthan":
-        setDistricts(Rajasthan);
-        break;
-      case "Sikkim":
-        setDistricts(Sikkim);
-        break;
-      case "Tamil Nadu":
-        setDistricts(TamilNadu);
-        break;
-      case "Telangana":
-        setDistricts(Telangana);
-        break;
-      case "Tripura":
-        setDistricts(Tripura);
-        break;
-      case "Uttaranchal":
-        setDistricts(Uttarakhand);
-        break;
-      case "Uttar Pradesh":
-        setDistricts(UttarPradesh);
-        break;
-      case "West Bengal":
-        setDistricts(WestBengal);
-        break;
-      case "Andaman and Nicobar Islands":
-        setDistricts(AndamanNicobar);
-        break;
-      case "Chandigarh":
-        setDistricts(Chandigarh);
-        break;
-      case "Dadar and Nagar Haveli":
-        setDistricts(DadraHaveli);
-        break;
-      case "Daman and Diu":
-        setDistricts(DamanDiu);
-        break;
-      case "Delhi":
-        setDistricts(Delhi);
-        break;
-      case "Lakshadeep":
-        setDistricts(Lakshadweep);
-        break;
-      case "Pondicherry":
-        setDistricts(Puducherry);
-        break;
-      default:
-        setDistricts([]);
-        break;
+    if (name === 'state') {
+      setSelectedState(value);
+      switch (value) {
+        case "Andra Pradesh":
+          setDistricts(AndraPradesh);
+          break;
+        case "Arunachal Pradesh":
+          setDistricts(ArunachalPradesh);
+          break;
+        case "Assam":
+          setDistricts(Assam);
+          break;
+        case "Bihar":
+          setDistricts(Bihar);
+          break;
+        case "Chhattisgarh":
+          setDistricts(Chhattisgarh);
+          break;
+        case "Goa":
+          setDistricts(Goa);
+          break;
+        case "Gujarat":
+          setDistricts(Gujarat);
+          break;
+        case "Haryana":
+          setDistricts(Haryana);
+          break;
+        case "Himachal Pradesh":
+          setDistricts(HimachalPradesh);
+          break;
+        case "Jammu and Kashmir":
+          setDistricts(JammuKashmir);
+          break;
+        case "Jharkhand":
+          setDistricts(Jharkhand);
+          break;
+        case "Karnataka":
+          setDistricts(Karnataka);
+          break;
+        case "Kerala":
+          setDistricts(Kerala);
+          break;
+        case "Madya Pradesh":
+          setDistricts(MadhyaPradesh);
+          break;
+        case "Maharashtra":
+          setDistricts(Maharashtra);
+          break;
+        case "Manipur":
+          setDistricts(Manipur);
+          break;
+        case "Meghalaya":
+          setDistricts(Meghalaya);
+          break;
+        case "Mizoram":
+          setDistricts(Mizoram);
+          break;
+        case "Nagaland":
+          setDistricts(Nagaland);
+          break;
+        case "Orissa":
+          setDistricts(Odisha);
+          break;
+        case "Punjab":
+          setDistricts(Punjab);
+          break;
+        case "Rajasthan":
+          setDistricts(Rajasthan);
+          break;
+        case "Sikkim":
+          setDistricts(Sikkim);
+          break;
+        case "Tamil Nadu":
+          setDistricts(TamilNadu);
+          break;
+        case "Telangana":
+          setDistricts(Telangana);
+          break;
+        case "Tripura":
+          setDistricts(Tripura);
+          break;
+        case "Uttaranchal":
+          setDistricts(Uttarakhand);
+          break;
+        case "Uttar Pradesh":
+          setDistricts(UttarPradesh);
+          break;
+        case "West Bengal":
+          setDistricts(WestBengal);
+          break;
+        case "Andaman and Nicobar Islands":
+          setDistricts(AndamanNicobar);
+          break;
+        case "Chandigarh":
+          setDistricts(Chandigarh);
+          break;
+        case "Dadar and Nagar Haveli":
+          setDistricts(DadraHaveli);
+          break;
+        case "Daman and Diu":
+          setDistricts(DamanDiu);
+          break;
+        case "Delhi":
+          setDistricts(Delhi);
+          break;
+        case "Lakshadeep":
+          setDistricts(Lakshadweep);
+          break;
+        case "Pondicherry":
+          setDistricts(Puducherry);
+          break;
+        default:
+          setDistricts([]);
+          break;
+      }
     }
 
-    setData({ ...data, [e.target.name]: e.target.value })
+    // setData({ ...data, [e.target.name]: e.target.value })
   }
   const submitHandler = e => {
     e.preventDefault();
     console.log(data)
-    navigate('/')
-    // axios({
-    //   method: 'post',
-    //   url: 'http://localhost:3800/register',
-    //   data: data
-    // }).then(() => {
-    //   alert('Registered Successfully')
-    //   navigate('/login')
-    // })
-
-    // if(password===confirmpassword){
-    //   console.log(data);
-    // }
-    // else{
-    //    console.log("passwords are not matching");
-    // }
+    // navigate('/')
+    axios({
+      method: 'post',
+      url: 'http://localhost:3750/register',
+      data: data
+    }).then(() => {
+      alert('Registered Successfully')
+      navigate('/login')
+    })
   }
+
+  const startRecording = async () => {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    mediaRecorderRef.current = new MediaRecorder(stream);
+
+    const chunks = [];
+    mediaRecorderRef.current.ondataavailable = (e) => {
+      chunks.push(e.data);
+    };
+
+    mediaRecorderRef.current.onstop = () => {
+      const blob = new Blob(chunks, { type: 'audio/wav' });
+      setAudioData(blob);
+    };
+
+    mediaRecorderRef.current.start();
+    setRecording(true);
+  };
+
+  const stopRecording = () => {
+    mediaRecorderRef.current.stop();
+    setRecording(false);
+  };
+
+  const sendAudioToBackend = async () => {
+    if (audioData) {
+      const formData = new FormData();
+      formData.append('audio', audioData, 'recording.wav');
+
+      await fetch('http://localhost:3750/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      setAudioData(null); // Clear the audio data after sending
+    }
+  };
+
   return (
     <div id='registerform'>
       <div id='register'>
@@ -258,16 +299,16 @@ const Register = () => {
             <div class="row">
               <div class="col">
                 <div class="mb-3 row">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">First Name</label>
-                  <div class="col-sm-10">
+                  <label for="inputPassword" class="col-sm-3 col-form-label">First Name</label>
+                  <div class="col-sm-6">
                     <input type="text" class="form-control" name='firstname' onChange={changeHandler} />
                   </div>
                 </div>
               </div>
               <div class="col">
                 <div class="mb-3 row">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Last Name</label>
-                  <div class="col-sm-10">
+                  <label for="inputPassword" class="col-sm-3 col-form-label">Last Name</label>
+                  <div class="col-sm-6">
                     <input type="text" class="form-control" name='lastname' onChange={changeHandler} />
                   </div>
                 </div>
@@ -276,24 +317,24 @@ const Register = () => {
             <div class="row">
               <div class="col">
                 <div class="mb-3 row">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Date of Birth</label>
-                  <div class="col-sm-10">
+                  <label for="inputPassword" class="col-sm-3 col-form-label">Date of Birth</label>
+                  <div class="col-sm-4">
                     <input type="date" class="form-control" name='dob' onChange={changeHandler} />
                   </div>
                 </div>
               </div>
-              <div class="col">
+              <div class="col" id='genderinput'>
                 <div class="mb-3 row">
-                  <label for="inputPassword" class="col-sm-2 col-form-label" name=''>Gender</label>
-                  <div class="form-check form-check-inline col-sm-1">
+                  <label for="inputPassword" class="col-sm-3 col-form-label" name=''>Gender</label>
+                  <div class="form-check form-check-inline col-sm-2">
                     <input class="form-check-input" type="radio" name="gender" value="male" onChange={changeHandler} />
                     <label class="form-check-label" for="inlineRadio1">Male</label>
                   </div>
-                  <div class="form-check form-check-inline col-sm-1">
+                  <div class="form-check form-check-inline col-sm-2">
                     <input class="form-check-input" type="radio" name="gender" value="female" onChange={changeHandler} />
                     <label class="form-check-label" for="inlineRadio2">Female</label>
                   </div>
-                  <div class="form-check form-check-inline col-sm-1 ms-3">
+                  <div class="form-check form-check-inline col-sm-2">
                     <input class="form-check-input" type="radio" name="gender" value="others" onChange={changeHandler} />
                     <label class="form-check-label" for="inlineRadio3">Others</label>
                   </div>
@@ -307,34 +348,35 @@ const Register = () => {
             <div class="row">
               <div class="col">
                 <div class="mb-3 row">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Father's Name</label>
-                  <div class="col-sm-10">
+                  <label for="inputPassword" class="col-sm-3 col-form-label">Father's Name</label>
+                  <div class="col-sm-6">
                     <input type="text" class="form-control" name='fathername' onChange={changeHandler} />
                   </div>
                 </div>
               </div>
               <div class="col">
                 <div class="mb-3 row">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Father's Profession</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name='fatherprofession' onChange={changeHandler} />
+                  <label for="inputPassword" class="col-sm-3 col-form-label">Mother's Name</label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" name='mothername' onChange={changeHandler} />
                   </div>
                 </div>
+
               </div>
             </div>
             <div class="row">
               <div class="col">
                 <div class="mb-3 row">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Mother's Name</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name='mothername' onChange={changeHandler} />
+                  <label for="inputPassword" class="col-sm-3 col-form-label">Father's Profession</label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" name='fatherprofession' onChange={changeHandler} />
                   </div>
                 </div>
               </div>
               <div class="col">
                 <div class="mb-3 row">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Mother's Profession</label>
-                  <div class="col-sm-10">
+                  <label for="inputPassword" class="col-sm-3 col-form-label">Mother's Profession</label>
+                  <div class="col-sm-6">
                     <input type="text" class="form-control" name='motherprofession' onChange={changeHandler} />
                   </div>
                 </div>
@@ -343,17 +385,17 @@ const Register = () => {
             <div class="row">
               <div class="col">
                 <div class="mb-3 row">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Father's Contact No</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name='fatherconatct' onChange={changeHandler} />
+                  <label for="inputPassword" class="col-sm-3 col-form-label">Father's Contact No</label>
+                  <div class="col-sm-6">
+                    <input type="number" class="form-control" name='fatherconatct' onChange={changeHandler} />
                   </div>
                 </div>
               </div>
               <div class="col">
                 <div class="mb-3 row">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Mother's Contact No</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name='mothercontact' onChange={changeHandler} />
+                  <label for="inputPassword" class="col-sm-3 col-form-label">Mother's Contact No</label>
+                  <div class="col-sm-6">
+                    <input type="number" class="form-control" name='mothercontact' onChange={changeHandler} />
                   </div>
                 </div>
               </div>
@@ -365,16 +407,16 @@ const Register = () => {
             <div class="row">
               <div class="col">
                 <div class="mb-3 row">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Mobile Number</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name='mobilenumber' onChange={changeHandler} />
+                  <label for="inputPassword" class="col-sm-3 col-form-label">Mobile Number</label>
+                  <div class="col-sm-6">
+                    <input type="number" class="form-control" name='mobilenumber' onChange={changeHandler} />
                   </div>
                 </div>
               </div>
               <div class="col">
                 <div class="mb-3 row">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Email Address</label>
-                  <div class="col-sm-10">
+                  <label for="inputPassword" class="col-sm-3 col-form-label">Email Address</label>
+                  <div class="col-sm-6">
                     <input type="email" class="form-control" name='emailaddress' onChange={changeHandler} />
                   </div>
                 </div>
@@ -383,16 +425,16 @@ const Register = () => {
             <div class="row">
               <div class="col">
                 <div class="mb-3 row">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">City</label>
-                  <div class="col-sm-10">
+                  <label for="inputPassword" class="col-sm-3 col-form-label">City</label>
+                  <div class="col-sm-6">
                     <input type="text" class="form-control" name='city' onChange={changeHandler} />
                   </div>
                 </div>
               </div>
               <div class="col">
                 <div class="mb-3 row">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">State</label>
-                  <div class="col-sm-10 form-group">
+                  <label for="inputPassword" class="col-sm-3 col-form-label">State</label>
+                  <div class="col-sm-6 form-group">
                     <select class="form-control" id="inputState" name="state" value={selectedState} onChange={changeHandler}>
                       <option value="SelectState">Select State</option>
                       <option value="Andra Pradesh">Andra Pradesh</option>
@@ -441,8 +483,8 @@ const Register = () => {
             <div class="row">
               <div class="col">
                 <div class="mb-3 row">
-                  <label for="inputPassword1" class="col-sm-2 col-form-label">District</label>
-                  <div class="col-sm-10">
+                  <label for="inputPassword1" class="col-sm-3 col-form-label">District</label>
+                  <div class="col-sm-6">
                     <select class="form-control" id="inputDistrict" name="district" onChange={changeHandler}>
                       <option value="">-- select one -- </option>
                       {
@@ -457,8 +499,8 @@ const Register = () => {
               </div>
               <div class="col">
                 <div class="mb-3 row">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Country</label>
-                  <div class="col-sm-10">
+                  <label for="inputPassword" class="col-sm-3 col-form-label">Country</label>
+                  <div class="col-sm-6">
                     <input type="text" class="form-control" name='country' value={!selectedState ? null : "India"} onChange={changeHandler} disabled />
                   </div>
                 </div>
@@ -467,16 +509,16 @@ const Register = () => {
             <div class="row">
               <div class="col">
                 <div class="mb-3 row">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Full Address</label>
-                  <div class="col-sm-10">
+                  <label for="inputPassword" class="col-sm-3 col-form-label">Full Address</label>
+                  <div class="col-sm-6">
                     <textarea name="fulladdress" id="" cols="30" rows="3" class="form-control" onChange={changeHandler}></textarea>
                   </div>
                 </div>
               </div>
               <div class="col">
                 <div class="mb-3 row">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Postal Code</label>
-                  <div class="col-sm-10">
+                  <label for="inputPassword" class="col-sm-3 col-form-label">Postal Code</label>
+                  <div class="col-sm-6">
                     <input type="number" class="form-control" name='postalcode' onChange={changeHandler} />
                   </div>
                 </div>
@@ -489,19 +531,33 @@ const Register = () => {
             <div class="row">
               <div class="col">
                 <div class="mb-3 row">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                  <div class="col-sm-10">
+                  <label for="inputPassword" class="col-sm-3 col-form-label">Password</label>
+                  <div class="col-sm-6">
                     <input type="password" class="form-control" name='password' onChange={changeHandler} />
                   </div>
                 </div>
               </div>
               <div class="col">
                 <div class="mb-3 row">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Confirm Password</label>
-                  <div class="col-sm-10">
+                  <label for="inputPassword" class="col-sm-3 col-form-label">Confirm Password</label>
+                  <div class="col-sm-6">
                     <input type="password" class="form-control" name='confirmpassword' onChange={changeHandler} />
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div id='registerblock6'>
+            <h4>Record a voice</h4>
+            <hr />
+            <div id="voice">
+              <h5>I tried to record my voice.</h5>
+              <p>Please speak out above text after click on record button</p>
+              <div>
+                <span id='voicebutton' onClick={recording ? stopRecording : startRecording}>
+                  {recording ? <i class="bi bi-mic-mute-fill"></i> : <i class="bi bi-mic-fill"></i>}
+                </span>
+                {audioData && <span class="btn btn-seconadry" onClick={sendAudioToBackend}>Submit</span>}
               </div>
             </div>
           </div>

@@ -22,9 +22,6 @@ function NavBar() {
                             <li class="nav-item">
                                 <a class="nav-link" href="/register">Register</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/exam">Exam</a>
-                            </li>
                         </ul>
                     </nav> :
                     <nav id="navbar">
@@ -33,7 +30,7 @@ function NavBar() {
                                 <a class="nav-link" href="/">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/exam">Exam</a>
+                                <a class="nav-link" href="/generalinstruction">Exam</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/" onClick={() => logout()}>LogOut</a>

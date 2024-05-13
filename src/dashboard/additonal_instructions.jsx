@@ -1,13 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function Instructions() {
+function AdditionalInstructions() {
     const navigate = useNavigate();
     function ExamPage(){
-        navigate("/")
+        navigate("/exampage")
     }
     function instructionspage(){
-        navigate("/exam")
+        navigate("/additionalinstructions")
     }
     return (
         <div id="instruction">
@@ -42,4 +42,4 @@ function Instructions() {
         </div>
     )
 }
-export default Instructions
+export default AdditionalInstructions

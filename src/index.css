@@ -12,188 +12,474 @@ code {
     monospace;
 }
 
-#NavBar{
-  position: sticky;
-  top: 0;
-}
-#navbar{
-  width: 100%;
-  height: 75px;
-  background-color: aliceblue;
-  line-height: 50px;
-}
-#navbar ul li a{
-  font-size: 20px;
-  margin-left: 30px;
+@media only screen and (min-width: 1281px) {
+
+  #NavBar {
+    position: sticky;
+    top: 0;
+  }
+
+  #navbar {
+    width: 100%;
+    height: 75px;
+    background-color: aliceblue;
+    line-height: 50px;
+  }
+
+  #navbar ul li a {
+    font-size: 20px;
+    margin-left: 30px;
+  }
+
+  #LoginForm {
+    width: auto;
+    height: auto;
+    padding: 50px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  #loginformblock1 {
+    width: 50%;
+    height: 450px;
+    background-image: url('/public/images/loginimg3.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 50px;
+  }
+  #loginformblock1 img {
+    width: 100%;
+    height: 390px;
+  }
+
+  #loginformblock1 span {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  #loginformblock2 {
+    width: 50%;
+    height: 450px;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+  }
+
+  .form-floating {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #loginCheckbox {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #loginCheckbox input {
+    margin-right: 10px;
+  }
+
+  #a1 {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #loginContent {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify;
+  }
+
+  #registerform {
+    background-color: white;
+    padding: 50px;
+  }
+
+  #register {
+    width: 100%;
+    height: auto;
+    background-color: rgb(222, 218, 243);
+    padding: 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #register label{
+    text-align: start;
+  }
+
+  #registerblock1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  #registerblock2 h4 {
+    text-align: start;
+  }
+
+  #registerblock3 h4 {
+    text-align: start;
+  }
+
+  #registerblock4 h4 {
+    text-align: start;
+  }
+
+  #registerblock5 h4 {
+    text-align: start;
+  }
+
+  #registerblock6 h4 {
+    text-align: start;
+  }
+
+  #registerblock6 #voice h5 {
+    text-align: start;
+  }
+
+  #registerblock6 #voice p {
+    text-align: start;
+    background-color: yellow;
+    width: 400px;
+    padding: 1px 2px;
+    /* font-weight: bold; */
+    /* color: white; */
+  }
+
+  #registerblock6 #voicebutton{
+    border: none;
+    background-color: transparent;
+    font-size: 30px;
+    cursor: pointer;
+    margin-left: -1100px;
+  }
+
+  #examdemo {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #exammainblock {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #examfooterblock {
+    position: sticky;
+    bottom: 0px;
+    padding: 15px;
+  }
+
+  #examfooterblock button {
+    width: 100px;
+    height: 50px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  #examblock1 {
+    width: 70%;
+    height: 465px;
+    background-color: whitesmoke;
+    text-align: start;
+    padding: 20px;
+    overflow: scroll;
+  }
+
+  #examblock2 {
+    width: 30%;
+    height: auto;
+    background-color: wheat;
+  }
+
+  #examblock2 span {
+    width: auto;
+    height: auto;
+    padding: 0px 30px;
+    background-color: rgb(2, 2, 252);
+    color: white;
+    font-weight: bold;
+  }
+
+  #instruction {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #instructionmainblock {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #instructionfooterblock {
+    position: sticky;
+    bottom: 0px;
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  #instructionfooterblock button {
+    width: auto;
+    height: 50px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  #instructionblock1 {
+    width: 70%;
+    height: 465px;
+    background-color: whitesmoke;
+    text-align: start;
+    padding: 20px;
+    overflow: scroll;
+  }
+
+  #instructionblock2 {
+    width: 30%;
+    height: auto;
+    background-color: wheat;
+  }
+
+  #instructionblock2 span {
+    width: auto;
+    height: auto;
+    padding: 0px 30px;
+    background-color: rgb(2, 2, 252);
+    color: white;
+    font-weight: bold;
+  }
 }
 
-#LoginForm{
-  width: auto;
-  height: auto;
-  padding: 50px;
-  display: flex;
-  flex-direction: row;
-}
-#loginformblock1{
-  width: 50%;
-  height: 500px;
-  background-image: url('/public/images/loginimg3.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 50px;
-}
-#loginformblock1 span{
-  color: white;
-  font-size: 22px;
-  font-weight: bold;
-}
-#loginformblock2{
-  width: 50%;
-  height: 500px;
-  background-color: whitesmoke;
-  display: flex;
-  flex-direction: column;
-  padding: 50px;
-}
-.form-floating{
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-}
-#loginCheckbox{
-  width: 50%;
-  display: flex;
-  flex-direction: row;
-  margin-left: auto;
-  margin-right: auto;
-}
-#loginCheckbox input{
-  margin-right: 10px;
-}
-#a1{
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-}
-#loginContent{
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: justify;
-}
+/* For Medium Laptops */
+@media only screen and (min-width: 1024px)and (max-width: 1280px) {
 
-#registerform{
-  background-color: gainsboro;
-  padding: 50px;
-}
-#register{
-  width: 100%;
-  height: auto;
-  background-color: white;
-  padding: 15px;
-  margin-left: auto;
-  margin-right: auto;
-}
-#registerblock1{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-}
-#registerblock2 h4{
-  text-align: start;
-}
-#registerblock3 h4{
-  text-align: start;
-}
-#registerblock4 h4{
-  text-align: start;
-}
-#registerblock5 h4{
-  text-align: start;
-}
+  #NavBar {
+    position: sticky;
+    top: 0;
+  }
 
-#examdemo{
-  display: flex;
-  flex-direction: column;
-}
-#exammainblock{
-  display: flex;
-  flex-direction: row;
-}
-#examfooterblock{
-  position: sticky;
-  bottom: 0px;
-  padding: 15px;
-}
-#examfooterblock button{
-  width: 100px;
-  height: 50px;
-  font-weight: bold;
-  font-size: 20px;
-}
-#examblock1{
-  width: 70%;
-  height: 465px;
-  background-color: whitesmoke;
-  text-align: start;
-  padding: 20px;
-  overflow: scroll;
-}
-#examblock2{
-  width: 30%;
-  height: auto;
-  background-color: wheat;
-}
-#examblock2 span{
-  width: auto;
-  height: auto;
-  padding: 0px 30px;
-  background-color: rgb(2, 2, 252);
-  color: white;
-  font-weight: bold;
-}
+  #navbar {
+    width: 100%;
+    height: 75px;
+    background-color: aliceblue;
+    line-height: 50px;
+  }
 
-#instruction{
-  display: flex;
-  flex-direction: column;
-}
-#instructionmainblock{
-  display: flex;
-  flex-direction: row;
-}
-#instructionfooterblock{
-  position: sticky;
-  bottom: 0px;
-  padding: 15px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-#instructionfooterblock button{
-  width: auto;
-  height: 50px;
-  font-weight: bold;
-  font-size: 20px;
-}
-#instructionblock1{
-  width: 70%;
-  height: 465px;
-  background-color: whitesmoke;
-  text-align: start;
-  padding: 20px;
-  overflow: scroll;
-}
-#instructionblock2{
-  width: 30%;
-  height: auto;
-  background-color: wheat;
-}
-#instructionblock2 span{
-  width: auto;
-  height: auto;
-  padding: 0px 30px;
-  background-color: rgb(2, 2, 252);
-  color: white;
-  font-weight: bold;
+  #navbar ul li a {
+    font-size: 20px;
+    margin-left: 30px;
+  }
+
+  #LoginForm {
+    width: auto;
+    height: auto;
+    padding: 50px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  #loginformblock1 {
+    width: 50%;
+    height: 500px;
+    background-image: url('/public/images/loginimg3.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 50px;
+  }
+
+  #loginformblock1 span {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  #loginformblock1 img {
+    width: 100%;
+    height: 400px;
+  }
+
+  #loginformblock2 {
+    width: 50%;
+    height: 500px;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+  }
+
+  .form-floating {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #loginCheckbox {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #loginCheckbox input {
+    margin-right: 10px;
+  }
+
+  #a1 {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #loginContent {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify;
+  }
+
+  #registerform {
+    background-color: gainsboro;
+    padding: 50px;
+  }
+
+  #register {
+    width: 100%;
+    height: auto;
+    background-color: white;
+    padding: 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #registerblock1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  #registerblock2 h4 {
+    text-align: start;
+  }
+
+  #registerblock3 h4 {
+    text-align: start;
+  }
+
+  #registerblock4 h4 {
+    text-align: start;
+  }
+
+  #registerblock5 h4 {
+    text-align: start;
+  }
+
+  #examdemo {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #exammainblock {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #examfooterblock {
+    position: sticky;
+    bottom: 0px;
+    padding: 15px;
+  }
+
+  #examfooterblock button {
+    width: 100px;
+    height: 50px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  #examblock1 {
+    width: 70%;
+    height: 465px;
+    background-color: whitesmoke;
+    text-align: start;
+    padding: 20px;
+    overflow: scroll;
+  }
+
+  #examblock2 {
+    width: 30%;
+    height: auto;
+    background-color: wheat;
+  }
+
+  #examblock2 span {
+    width: auto;
+    height: auto;
+    padding: 0px 30px;
+    background-color: rgb(2, 2, 252);
+    color: white;
+    font-weight: bold;
+  }
+
+  #instruction {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #instructionmainblock {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #instructionfooterblock {
+    position: sticky;
+    bottom: 0px;
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  #instructionfooterblock button {
+    width: auto;
+    height: 50px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  #instructionblock1 {
+    width: 70%;
+    height: 465px;
+    background-color: whitesmoke;
+    text-align: start;
+    padding: 20px;
+    overflow: scroll;
+  }
+
+  #instructionblock2 {
+    width: 30%;
+    height: auto;
+    background-color: wheat;
+  }
+
+  #instructionblock2 span {
+    width: auto;
+    height: auto;
+    padding: 0px 30px;
+    background-color: rgb(2, 2, 252);
+    color: white;
+    font-weight: bold;
+  }
 }

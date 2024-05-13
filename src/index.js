@@ -13,8 +13,9 @@ import {
 } from "react-router-dom";
 import Login from './authenticate/login';
 import Register from './authenticate/register.jsx';
-import ExamPattern from './dashboard/exam.jsx';
-import Instructions from './dashboard/instruction.jsx';
+import GeneralInstructions from './dashboard/general_instructions.jsx';
+import AdditionalInstructions from './dashboard/additonal_instructions.jsx';
+import ExamPage from './dashboard/exam_page.jsx';
 
 const router = createBrowserRouter([
   {
@@ -34,12 +35,16 @@ const router = createBrowserRouter([
         element:<Register></Register>
       },
       {
-        path:'/exam',
-        element:<ExamPattern></ExamPattern>
+        path:'/generalinstruction',
+        element:<GeneralInstructions></GeneralInstructions>
       },
       {
-        path:'/instructions',
-        element:<Instructions></Instructions>
+        path:'/additionalinstructions',
+        element:<AdditionalInstructions></AdditionalInstructions>
+      },
+      {
+        path:'/exampage',
+        element:<ExamPage></ExamPage>
       }
     ]
   },
